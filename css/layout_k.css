@@ -1,0 +1,31 @@
+/* 
+    Document   : layout
+    Created on : Jul 9, 2011, 1:10:29 PM
+    Author     : kavinga
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+#left_k {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 180px;
+    border: 1px solid black;
+    height: 100%;
+    background-color: #EFEFEF;
+}
+#container_k{
+    width: 100%;
+    position: relative;
+}
+#content_k{
+    margin-left: 190px;
+/*    position: absolute;*/
+}

@@ -1,0 +1,121 @@
+HHIMS Version 2  
+2012/Jun
+	* Bug in dischared by information. Fixed 
+	* Midnight census drilldown modified.
+	* Prescribed date/time added to the OPD overview.
+	* Add/Edit speciality bug fixed.
+	* Lab sample collection date/time bug fixed.
+---------------------------------------------------------------------	
+HHIMS Version 2 
+2012/Apr
+	* Added "Medication History" patient overview.
+	* Procedure table editied added new field PR_ID
+---------------------------------------------------------------------	
+HHIMS Version 2  
+2012/Mar
+	* Ward list: 'Open' button removed and add mousedown option to the row.
+	* Lab Order double click on button disabled. 
+	* Bug fixed: refreshes the list of pending lab orders.
+---------------------------------------------------------------------		
+HHIMS Version 2  
+2012/Feb
+	* Disabled the text selecting features of the browser.
+	* Login style changed.
+	* List of inpatient laborder list added to Doctor's home page.
+	* HHIMS change log and License added to About page.
+	** Files can be attached to the patient recordes.
+	** Image viewer added to view uploaded images.
+	** Doctors can comment on the attached files
+	* Admission permission bug fixed.
+	* History / Allergy permission added.
+	* Post/ Designation can be maintained.
+	* Doctor's specialization field addded.
+	*** New Patient over view screen.
+	* Lab test added to the patient overview screen.
+	* Allergies added to the patient overview screen.
+	* Past histories added to the patient overview screen.
+	* Attached files added to the patient overview screen.
+	* Pemission page modified.
+---------------------------------------------------------------------	
+HHIMS Version 1.2  
+2012/Jan
+	* "Force Save" enabled for patient registrations.
+	* IMMR tables can be edited.
+	* Shows the findings – should show the conditions. bug fixed.
+	* If no working diagnosis, ICD doesn't trigger the IMMR codes. bug Fixed.
+	* Vist overview: SNOMED findings don't show. fixed.
+	* The tab after Remarks is bigger than the tabs after ICD-10.fixed
+	* Lab department save bug fixed.
+	* Doctor's homepage modified with listing of his/her OPD patients, ward patients, clinic patients and orderd lab tests.
+	* Redirecting page bug fixed for php < 5 version.
+	* Report screen modified.
+	* New menu "Registry" added to display OPD registry book.
+	* OPD registry book added under menu"Registry".
+	* Laboratory: add new report 'Laboratory tests carried out' which shows the details of carried out lab tests.
+	* New year BHT reset bug fixed.
+	* Patient name and initials capitalized.
+	* ICD Edit bug fixed.
+	* Automatic module key checking features.
+	* Hospital performance indicator report added.
+2011/Dec
+	* Patient name can be edited only by programmer.
+	* Simple Appointment system added.
+	* Searching for duplicate pateints while typing feature added to avoid duplicates entries.
+	* More options added to OPD visit entry screen like. Treatments, Examinations, Allergies and past History.
+	* Multi complaints can be enter in OPD Visit by typing.***
+	* OPD visits can be scaned through barcode scanner
+	* Lab Order can be scaned through barcode scanner
+	* Prescriptions can be scaned through barcode scanner    
+	* Auto redirecting according the user logined when the patient slip scanned to apporipriate page.		
+2011/Nov
+	* Auto calculate drugs to be dispensed.
+	* Separate drug stock for clinics and OPD. (can be configured)
+	* IMMR MAXLENGTH ICDCode  bug fixed.
+	* IMMR New table added.
+	* Feature of adding Drugs and Lab Orders from OPD entry screen.
+	* "Send to Pharmacy" disable bug fixed.
+	* OPD Queue management system added.
+	* Village searching feature improved by typing.
+	* System flexibility added. Now system can be configured using hospital settings.
+	* Display ~Age and ~DOB on patient edit.
+	* Normal village lookup button added.			
+2011/Sep
+	* New version of MID night census.
+	* Drill down features in MID night census report.
+	* Death before, after 48 hrs column added in MID night census report.
+	* Features of adding new villages.
+	* Repeat old prescription in OPD.
+
+---------------------------------------------------------------------
+HHIMS Version 1.1  
+	* open existing notification if created in addmission view module.
+	* Age bug fixed
+	* Notification class created in include/MDSNotification
+	* help for NIC changed in user form.
+	* Bug On clicking on one of the terms in the lists, the system returns to the home page FIXED for SNOMED Disorder.
+	* Bug On clicking on one of the terms in the lists, the system returns to the home page FIXED for SNOMED Procedure.
+	* Bug On clicking on one of the terms in the lists, the system returns to the home page FIXED for SNOMED Event.
+	* Bug On clicking on one of the terms in the lists, the system returns to the home page FIXED for SNOMED Findings.
+	* Auto focus to the search text box in ICD, SNOMED look up.
+	* onmousedown open in most places to increase the speed .
+	* Age bug fixed and added calculated sign ~ DOB and AGE.
+	* Help corrected for cannedtext. 
+	* Village click redirection fixed.
+	* ICD field type changed to textarea.
+	* Button css corrected.
+	* Disabled the multi click on a save buttons. Its helps to avoid the double entries.
+	* Allowed the Firefox browser also to run MDSFoss. Some CSS wont work in FireFox.
+	* User address fits the interoperability definitions.
+        
+HHIMS Version 1
+---------------------------------------------------------------------
+	* System with Patient registerning.
+	* System added with OPD registerning.
+	* System added with Admission registering.
+	* System added with Wards.    
+	* System added with Hospital settings.
+	* System added with system tables.
+	* System added with village tables.
+	* System added with SNOMED tables.
+	* System added with Drugs/Period/Frequency/HowLong.
+	* Various printouts and reports added.

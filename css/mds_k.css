@@ -1,0 +1,25 @@
+/* 
+    Document   : mds_k
+    Created on : Jul 9, 2011, 6:35:19 PM
+    Author     : kavinga
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#options_list_k{
+    display: inline;
+}
+#options_list_k li{
+    float: left;
+}
+.hr_k{
+    color: #0000CC;
+}
+.blank_k{
+    height: 10px;
+}

@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /images/
+Disallow: /include/
+Disallow: /css/
+Disallow: /logs/
+Disallow: /data/
+Disallow: /js/
+Disallow: /include/lookup/
+Disallow: /include/class/
+Disallow: /install/
+Disallow: /admin/
+Disallow: /attach/
+Disallow: /plugins/

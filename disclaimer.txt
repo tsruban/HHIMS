@@ -1,0 +1,5 @@
+This software holds a record of patient information entered by hospital staff. 
+It does not give any clinical advice or recommendations on the diagnosis nor the treatment of patients. 
+While the ICTA and Lunar Technologies have taken every effort in the production of this software to ensure 
+that the information entered by the user is correctly recorded and displayed, it is ultimately the user 
+of the system who takes full responsibility for the accuracy of this information.

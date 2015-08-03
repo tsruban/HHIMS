@@ -1,0 +1,33 @@
+		<!-- ALLERGY-->
+		<div class="panel  panel-danger"  style="padding:2px;margin-bottom:1px;" >
+			<div class="panel-heading" ><b>Allergies</b></div>
+			<?php
+				//print_r($patient_allergy_list);
+				if ((!isset($patient_allergy_list))||(empty($patient_allergy_list))){
+					echo " - NO DATA - ";
+				}
+				else{
+					echo '<table class="table table-condensed"  style="font-size:0.95em;margin-bottom:0px;">';
+					for ($i=0;$i<count($patient_allergy_list); ++$i){
+						echo '<tr >';
+							echo '<td>';
+								echo $patient_allergy_list[$i]["Name"];
+							echo '</td>';
+							echo '<td>';
+								if ($patient_allergy_list[$i]["Status"]=="Current"){
+									echo '<span class="label label-danger">'.$patient_allergy_list[$i]["Status"].'</span>';
+								}
+								else{
+									echo '<span class="label label-warning">'.$patient_allergy_list[$i]["Status"].'</span>';
+								}
+							echo '</td>';
+							echo '<td>';
+								echo $patient_allergy_list[$i]["Remarks"];
+							echo '</td>';
+						echo '</tr>';
+					}
+					echo '</table>';
+				}
+			?>
+		</div>	
+		<!-- END ALLERGY-->
