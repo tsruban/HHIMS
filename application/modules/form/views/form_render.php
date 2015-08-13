@@ -942,6 +942,48 @@ function my_form_SNOMED($frm,$value=NULL,$fid=null){
 
 function my_form_SNOMED_diagnosis($frm,$value=NULL,$fid=null){
 
+	echo '<table width=100%><tr><td><input  class="form-control input-sm" ';
+		if ($frm["type"]=='hidden'){		
+			echo ' type="hidden" ';
+		}		
+		else{
+			echo ' type="text" ';
+		}
+		echo 'id="'.$frm["id"].'" ';
+		echo 'name="'.$frm["name"].'" ';
+		echo 'value="'.set_value($frm["name"],$value).'" ';
+		if (isset($frm["placeholder"])){
+			echo 'placeholder="'.$frm["placeholder"].'" ';
+		}
+		if (isset($frm["class"])){ 
+			echo 'class="'.$frm["class"].'" ';
+		}
+		if (isset($frm["style"])){
+			echo 'style="'.$frm["style"].'" ';
+		}
+		if (isset($frm["rules"])){		
+			echo 'rules="'.$frm["rules"].'" ';
+		}		
+		if (isset($frm["maxlength"])){		
+			echo 'maxlength="'.$frm["maxlength"].'" ';
+		}		
+		
+		
+	echo ' readonly=true></td><td width=10px>';
+	echo '<button type="button" class="btn btn-default btn-sm" onclick=\'open_snomed_lookup("'.$frm["option"].'")\'>
+				
+			<span class="glyphicon glyphicon-search pull-right" ';
+			echo ' ';
+	echo '></span></button></td></tr></table>';
+	if (isset($frm["option"])){
+		
+	}
+	echo form_error($frm["name"]);		
+}
+
+
+function my_form_SNOMED_diagnosis_old($frm,$value=NULL,$fid=null){//06/08/15
+
 	echo '<div id="" ><table width=100%><tr><td width=30%>';
 		echo '<select multiple  size="2" class="form-control input-sm"  id="snomed_select" style="height:80px;" onchange="lookUpSNOMED(\'SNOMED_Text\',$(\'#snomed_select\').val(),\'\');">';
                     echo '<option value="disorder">Diagnosis</option> ';
@@ -1328,5 +1370,113 @@ function loadCannedText(srh, obj) {
         $(obj).val($(obj).val().replace('\\' + srh, String(canned_text)));
     }
 
+}
+
+function open_snomed_lookup(pfix){
+	var back_area = '<div id="snmed_search" style="padding:10px;position:absolute;left:0px;top:0px;width:100%;height:100%;background:#FFF;z-index:999999;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><div id="srch_cont"></div></div>';
+	$("#snmed_search").remove();
+	$('body').append(back_area);
+	var srch_cont = '<h3>SNOMED Search<div class="btn-group btn-group-xs" role="group" aria-label="Extra-small button group">';
+		srch_cont += '<button type="button" class="btn btn-primary smd_type" id="disorder">Disorder</button>';
+		srch_cont += '<button type="button" class="btn btn-default smd_type" id="procedures">Procedure</button>';
+		srch_cont += '<button type="button" class="btn btn-default smd_type" id="finding">Finding</button>';
+		srch_cont += '<button type="button" class="btn btn-default smd_type" id="event">Event</button>';
+		srch_cont += '<input type="hidden" id="snomed_cat" value="disorder">';
+		srch_cont += '</div></h3><div class="input-group">';
+		srch_cont += '<input type="text" class="form-control" id="snomed_term" placeholder="Search for a complaint">';
+		srch_cont += '<span class="input-group-btn">';
+		srch_cont += '<button class="btn btn-default" default=true type="button" onclick=\'search_term("snomed_term","srch_res")\'>Go!</button>';
+		srch_cont += '</span>';
+		srch_cont += '</div><div id="srch_res"></div>';
+	$('#srch_cont').html(srch_cont);
+	$('#snomed_term').focus();
+	$('#snomed_term').val($('#'+pfix+'SNOMED_Text').val());
+	//search_term("snomed_term","srch_res");
+	$('#snomed_term').keypress(function( event ) {
+		  if ( event.which == 13 ) {
+			 event.preventDefault();
+			 search_term("snomed_term","srch_res",pfix);
+		  };
+	});	  
+	
+	$(".smd_type").click(function(){
+			$(".smd_type").removeClass("btn-primary");
+			$(".smd_type").removeClass("btn-default");
+			$(".smd_type").addClass("btn-default");
+			$(this).addClass("btn-primary");
+			$("#snomed_cat").val($(this).attr('id'));
+			 search_term("snomed_term","srch_res",pfix);
+	});
+	
+}
+
+function search_term(input,res_div,pfix){
+	var srh = $('#'+input).val();
+	var req = $.ajax({
+        url : "<?php echo site_url("lookup/snomed_search/"); ?>/"+srh+'/'+$("#snomed_cat").val(),
+        global : false,
+        type : "POST",
+        async : false
+    });
+	req.done(function (response, textStatus, jqXHRб){
+		var terms = JSON.parse(response);
+		if (terms){
+			if(terms.length ==0){
+				display_suggestion(input,res_div);
+				return;
+			}
+			var html = '';
+			for (var i in terms){
+				html += '<input type="hidden" id="sel_smd_text_'+i+'" value="'+terms[i]['TERM']+'">';
+				html += '<input type="hidden"  id="sel_smd_code_'+i+'" value="'+terms[i]['CONCEPTID']+'">';
+				html += '<input type="hidden" id="sel_icd_text_'+i+'" value="'+terms[i]['Link_ICD_Text']+'">';
+				html += '<input type="hidden"  id="sel_icd_code_'+i+'" value="'+terms[i]['Link_ICD_Code']+'">';
+				html += '<p class="bg-warning" style="margin-bottom:0px;background:#fcf8e3;min-height:50px;padding:5px;border:1px solid #d8d8c5;">';
+				//html += '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>';
+				html += '<b>'+parseInt(parseInt(i)+1)+'. <a href=\'javascript:update_data('+i+',"'+pfix+'")\'>'+terms[i]['TERM']+'</a></b><br>';
+				if (terms[i]['Link_ICD_Code']){
+					html += '<span class="label label-info">ICD :'+terms[i]['Link_ICD_Code']+'</span>'+terms[i]['Link_ICD_Text']+'<br>';
+				}
+				if (terms[i]['immr']){
+					for (var j in terms[i]['immr']){
+						html += '<input type="hidden"  id="sel_immr_text_'+i+'" value="'+terms[i]['immr'][j]['Name']+'">';
+						html += '<input type="hidden"  id="sel_immr_code_'+i+'" value="'+terms[i]['immr'][j]['CODE']+'">';
+						html += '&nbsp;&nbsp;&nbsp;<span class="label label-primary">IMMR :'+terms[i]['immr'][j]['CODE']+'</span>'+terms[i]['immr'][j]['Name']+' / '+terms[i]['immr'][j]['Category']+'<br>';
+					}
+				}
+				html += '</p>';
+			}
+		}
+		$("#"+res_div).html(html);
+	});
+}
+
+function update_data(i,pfix){
+	$('#'+pfix+'SNOMED_Text').val($("#sel_smd_text_"+i).val());
+	$('#'+pfix+'SNOMED_Code').val($("#sel_smd_code_"+i).val());
+	
+	$('#'+pfix+'ICD_Text').val($("#sel_icd_text_"+i).val());
+	$('#'+pfix+'ICD_Code').val($("#sel_icd_code_"+i).val());
+	
+	$('#'+pfix+'IMMR_Text').val($("#sel_immr_text_"+i).val());
+	$('#'+pfix+'IMMR_Code').val($("#sel_immr_code_"+i).val());
+	$("#snmed_search").remove();	
+}
+
+function display_suggestion(input,res_div){
+	var texts = String($('#'+input).val()).split(" ");
+	var lnk = '';
+	for (var i in texts){
+		lnk += '<a href=\'javascript:add_to_search('+i+',\"'+res_div+'\",\"'+input+'\")\'><b id="src_'+i+'">' + texts[i] + '</b></a>&nbsp;';
+	}
+	var err = '<div class="alert alert-info" role="alert">No result returned! <br> Try : '+ lnk +'</div>';
+	$("#"+res_div).html(err);
+}
+
+function add_to_search(i,res_div,input){
+	$('#'+input).val($("#src_"+i).html());
+	$("#disorder").trigger( "click" );
+	search_term(input,res_div);
+//search_term('src_'+i,res_div);
 }
 </script>

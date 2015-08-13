@@ -134,9 +134,9 @@ class Mpersistent extends CI_Model
 		$dataset = array();
         $Q =  $this->db->query($sql);
 		 if ($Q->num_rows() > 0){
-            foreach ($Q->result_array() as $row){
-                $dataset[] = $row;
-            }
+           // foreach ($Q->result_array() as $row){
+                $dataset = $Q->result_array();
+            //}
         }
 		$Q->free_result();    
         return $dataset; 	

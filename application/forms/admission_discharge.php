@@ -31,7 +31,8 @@ URL: http: www.hhims.org
 $form = array();
 $form["OBJID"] = "ADMID";
 $form["TABLE"] = "admission";
-$form["SAVE"] = "admission/discharge";
+$form["SAVE"] = "form/save/admission_discharge";//admission/discharge
+$form["SAVE_TABLE"] = "admission";
 $form["NEXT"]  = "admission/view";	// default page after saving 
 $form["CONTINUE"]  = "";	//this can be filled when you want to coustomize what page to go after saving 
 $form["PATIENT_BANNER_ID"] = "";
@@ -87,6 +88,84 @@ array(
 		"style"=>"",
 		"class"=>"input"
 	),	
+array(		
+		"id"=>"Discharge_SNOMED_Text", 
+		"name"=>"Discharge_SNOMED_Text",
+		"label"=>"SNOMED",
+		"type"=>"SNOMED_DIAGNOSIS",
+		"value"=>" ",
+		"option"=>"Discharge_",
+		"placeholder"=>"SNOMED Term",
+		"rules"=>"trim|xss_clean|required",
+		"style"=>"",
+		"class"=>"input",
+		"can_edit"=>array()
+	),	
+array(		
+		"id"=>"Discharge_SNOMED_Code", 
+		"name"=>"Discharge_SNOMED_Code",
+		"label"=>"",
+		"type"=>"hidden",
+		"value"=>" ",
+		"option"=>"",
+		"placeholder"=>"",
+		"rules"=>"trim|xss_clean",
+		"style"=>"",
+		"class"=>"input",
+		"can_edit"=>array()
+	),	
+array(		
+		"id"=>"Discharge_ICD_Text", 
+		"name"=>"Discharge_ICD_Text",
+		"label"=>"ICD",
+		"type"=>"text",
+		"value"=>'',
+		"option"=>"readonly",
+		"placeholder"=>"Icd",
+		"rules"=>"trim|xss_clean",
+		"style"=>"",
+		"class"=>"input",
+		"can_edit"=>array()
+	),	
+array(		
+		"id"=>"Discharge_ICD_Code", 
+		"name"=>"Discharge_ICD_Code",
+		"label"=>"",
+		"type"=>"hidden",
+		"value"=>'',
+		"option"=>"",
+		"placeholder"=>"Icd",
+		"rules"=>"trim|xss_clean",
+		"style"=>"",
+		"class"=>"input",
+		"can_edit"=>array()
+	),	
+array(		
+		"id"=>"Discharge_IMMR_Text", 
+		"name"=>"Discharge_IMMR_Text",
+		"label"=>"IMMR",
+		"type"=>"text",
+		"value"=>'',
+		"option"=>"readonly",
+		"placeholder"=>"IMMR",
+		"rules"=>"trim|xss_clean",
+		"style"=>"",
+		"class"=>"input",
+		"can_edit"=>array()
+	),	
+array(		
+		"id"=>"Discharge_IMMR_Code", 
+		"name"=>"Discharge_IMMR_Code",
+		"label"=>"",
+		"type"=>"hidden",
+		"value"=>'',
+		"option"=>"",
+		"placeholder"=>"IMMR",
+		"rules"=>"trim|xss_clean",
+		"style"=>"",
+		"class"=>"input",
+		"can_edit"=>array()
+	),		
 array(		
 		"id"=>"OutCome", 
 		"name"=>"OutCome",

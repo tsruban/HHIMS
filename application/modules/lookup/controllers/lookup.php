@@ -105,6 +105,14 @@ class Lookup extends MX_Controller {
 		echo $json ;
 	}
 	
+	
+	public function snomed_search($text,$cat='disorder'){
+		$terms = explode("%20", $text);
+		$this->load->model('mlookup');
+		$data["list"] = $this->mlookup->get_snomed_term($terms,$cat);
+		echo json_encode($data["list"]);
+	}
+	
 	public function snomed(){
         $type=$_GET["type"];
         echo $this->loadMDSPager($type);

@@ -147,6 +147,18 @@ echo "\n</head>";
 									echo '</td>';
 									
 								echo '</tr>';	
+								echo '<tr>';
+									echo '<td colspan=1>';
+										echo 'Discharge SNOMED:<b><br>'.$admission_info["Discharge_SNOMED_Text"].'</b>';
+									echo '</td>';
+									echo '<td colspan=2>';
+										echo 'Discharge ICD:<b><br>'.$admission_info["Discharge_ICD_Code"].':'.$admission_info["Discharge_ICD_Text"].'</b>';
+									echo '</td>';
+									echo '<td colspan=1>';
+										echo 'Discharge IMMR:<b><br>'.$admission_info["Discharge_IMMR_Code"].':'.$admission_info["Discharge_IMMR_Text"].'</b>';
+									echo '</td>';
+									
+								echo '</tr>';	
 							}
 							echo '<tr>';
 								echo '<td colspan=2>';

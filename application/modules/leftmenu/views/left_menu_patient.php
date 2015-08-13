@@ -85,22 +85,6 @@ $menu .= "<a class='list-group-item' onclick=\"openWindow('" . site_url(
     "patient/notes/$id"
 ) . "')\" href='#'>Print nursing notes</a>";
 				$menu .="</div>";	
-				if ($this->config->item('purpose') !="PC"){ // Questionnaires for GH and PP
-						$menu .="<div class='list-group'>";
-						$menu .="<a href='' class='list-group-item active'>";
-						$menu .="Generic Modules";
-						$menu .="</a>";
-						if (isset($module)&&count($module)>0){
-							for($i=0; $i<count($module); ++$i){
-								$menu .=" <a ";
-								$menu .=" href='".base_url()."index.php/questionnaire/load/".$module[$i]["qu_questionnaire_id"]."/".$id."/patient/".$id."?CONTINUE=patient/view/".$id."' ";
-								$menu .=" title='".$module[$i]["description"]."' ";
-								$menu .=" class='list-group-item'><span class='glyphicon glyphicon-list'></span>&nbsp;".$module[$i]["name"];
-								$menu .=" </a>";
-							}	
-					  	}
-						$menu .="</div>";				
-				}
 			$menu .=" </div> \n";
         echo $menu ;	  
 ?>

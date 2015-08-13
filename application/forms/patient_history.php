@@ -65,7 +65,7 @@ array(
 		"id"=>"SNOMED_Text", 
 		"name"=>"SNOMED_Text",
 		"label"=>"* SNOMED",
-		"type"=>"SNOMED",
+		"type"=>"SNOMED_DIAGNOSIS",
 		"value"=>" ",
 		"option"=>"",
 		"placeholder"=>"",
