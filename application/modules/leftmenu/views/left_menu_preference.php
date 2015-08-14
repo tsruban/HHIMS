@@ -79,7 +79,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 						  $menu .="<a href='".base_url()."index.php/preference/load/who_drug' class='list-group-item'>Drugs</a>";
 						  $menu .="<a href='".base_url()."index.php/preference/load/drugs_dosage' class='list-group-item'>Drugs dosage</a>";
 						  $menu .="<a href='".base_url()."index.php/preference/load/drugs_frequency' class='list-group-item'>Drugs frequency</a>";
-						  $menu .="<a href='".base_url()."index.php/preference/load/drugs_period' class='list-group-item'>Drugs period</a>";
+						 // $menu .="<a href='".base_url()."index.php/preference/load/drugs_period' class='list-group-item'>Drugs period</a>";
 						  //$menu .="<a href='".base_url()."index.php/preference/load/drug_stock' class='list-group-item'>Drug Stock</a>";
 						  $menu .="<a href='".base_url()."index.php/drug_stock/view' class='list-group-item'>Stock management</a>";
 						  $menu .="<a href='".base_url()."index.php/preference/load/canned_text' class='list-group-item'>Canned text</a>";
