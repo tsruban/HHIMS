@@ -38,4 +38,4 @@ Make a request to info@hhims.org with a brief statement on how you intend to use
 
 For further information, look at our web-site: www.hhims.org
 
-For latest developments, look at our demo-site: hhims.mdsfoss.org
+For latest developments, look at our demo-site: http://hhims.mdsfoss.org
