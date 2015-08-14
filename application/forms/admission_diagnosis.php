@@ -60,10 +60,10 @@ array(
 		"value"=>" ",
 		"option"=>"",
 		"placeholder"=>"",
-		"rules"=>"trim|xss_clean",
+		"rules"=>"trim|xss_clean|required",
 		"style"=>"",
 		"class"=>"input",
-		"can_edit"=>array("Programmer","Admin")
+		"can_edit"=>array()
 	),	
 array(		
 		"id"=>"SNOMED_Code", 
@@ -76,20 +76,20 @@ array(
 		"rules"=>"trim|xss_clean",
 		"style"=>"",
 		"class"=>"input",
-		"can_edit"=>array("Programmer","Admin")
+		"can_edit"=>array()
 	),	
 array(		
 		"id"=>"ICD_Text", 
 		"name"=>"ICD_Text",
 		"label"=>"ICD",
-		"type"=>"icd_lookup",
+		"type"=>"text",
 		"value"=>'',
-		"option"=>"",
+		"option"=>"readonly",
 		"placeholder"=>"Icd",
 		"rules"=>"trim|xss_clean",
 		"style"=>"",
 		"class"=>"input",
-		"can_edit"=>array("Programmer","Admin")
+		"can_edit"=>array()
 	),	
 array(		
 		"id"=>"ICD_Code", 
@@ -102,9 +102,34 @@ array(
 		"rules"=>"trim|xss_clean",
 		"style"=>"",
 		"class"=>"input",
-		"can_edit"=>array("Programmer","Admin")
+		"can_edit"=>array()
 	),	
-	
+array(		
+		"id"=>"IMMR_Text", 
+		"name"=>"IMMR_Text",
+		"label"=>"IMMR",
+		"type"=>"text",
+		"value"=>'',
+		"option"=>"readonly",
+		"placeholder"=>"IMMR",
+		"rules"=>"trim|xss_clean",
+		"style"=>"",
+		"class"=>"input",
+		"can_edit"=>array()
+	),	
+array(		
+		"id"=>"IMMR_Code", 
+		"name"=>"IMMR_Code",
+		"label"=>"",
+		"type"=>"hidden",
+		"value"=>'',
+		"option"=>"",
+		"placeholder"=>"IMMR",
+		"rules"=>"trim|xss_clean",
+		"style"=>"",
+		"class"=>"input",
+		"can_edit"=>array()
+	),	
 array(		
 		"id"=>"Remarks", 
 		"name"=>"Remarks",

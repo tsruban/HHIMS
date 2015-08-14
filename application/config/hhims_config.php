@@ -40,7 +40,7 @@ $this->config->item('purpose');
 */
 $config["purpose"] = "GH"; //GH:Governent hospital, PC: Pain Clinic, PP : Private Practice
 
-$config["title"] = "HHIMS Pain Clinic ver.1";
+$config["title"] = "HHIMS V2.1";
 $config["app_name"] = "HHIMS";
 $config["debug"] = false;
 $config["flash_time"] = 2;//sec
@@ -55,14 +55,15 @@ $config["clinic_bck_color"] = "#C4AEAE";
 $config["block_opd_after"] = 1;  // day
 $config["regular_hours"] = array('06','09','12','15','18','21');  // hrs
 
-
+//Add your email server details for sending notification emails
 $config['mail_protocol'] = 'smtp';
-$config['mail_smtp_host'] = 'server79.web-hosting.com';
+$config['mail_smtp_host'] = '';
 $config['mail_smtp_port'] = 25;
 $config['mail_smtp_smtp_timeout'] = 30;
-$config['mail_smtp_user'] = 'noreply@form.mdsfoss.org';
-$config['mail_smtp_pass'] = 't!%b(paxX*~Z';
-$config['mail_smtp_sender'] = 'hhims.org';
+$config['mail_smtp_user'] = '';
+$config['mail_smtp_pass'] = '';
+$config['mail_smtp_sender'] = '';
+
 //Factor
 $config["once_a_day"] = 1; 
 $config["bd"] = 2; 

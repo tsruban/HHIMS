@@ -1,2 +1,3 @@
-application/config/database.php
 application/logs/
+.buildpath
+.project

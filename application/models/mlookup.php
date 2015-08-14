@@ -232,6 +232,67 @@ function get_complaint_list($key){
         return $dataset;    
     }
 	
+	
+	public function get_snomed_term($terms,$type='disorder',$from=1,$to=100){
+
+        $dataset = array();
+		$sql =" SELECT  DISTINCT CONCEPTID, TERM, Link_ICD_Code, Link_ICD_Text FROM ".$type;
+		$sql .=" WHERE  (";
+		foreach ($terms as $term){
+			$sql .=" (TERM  like '%".$term."%') AND ";
+		}
+		$sql .=" (1=1))";
+		//$sql .=" AND Link_ICD_Code IS NOT NULL AND Link_ICD_Code <> '' ";
+		$sql .=" order by Link_ICD_Code DESC limit ".$from . ','.$to;
+		//echo $sql;
+        $Q =  $this->db->query($sql);
+        if ($Q->num_rows() >0){
+				
+				foreach ($Q->result_array() as $row){
+					if ($row['Link_ICD_Code']!=''){
+						$immr = $this->analize_immr($row['Link_ICD_Code']);
+						$row['immr'] = $immr;
+					}
+					else{
+						$row['immr'] = null;
+					}
+					$dataset[] = $row;
+				}
+                //$dataset = $Q->result_array();
+        }
+        $Q->free_result();    
+        return  $dataset;  
+	}
+	
+	public function analize_immr($icd_code){
+		$icd_codes = explode(".", $icd_code);
+		$immr = $this->get_immr($icd_code);
+		if (empty($immr)){
+			if(isset($icd_codes[0])){
+				$immr = $this->get_immr($icd_codes[0]);
+			}
+		}
+		return $immr;
+	}
+	
+	public function get_immr($icd_code){
+		$icd_codes = explode(".", $icd_code);
+		$dataset = array();
+		$sql=" select IMMRID,CODE,Name,Category ";
+        $sql .= " FROM immr " ;
+        $sql .= " WHERE (ICDCODE like '%".$icd_code."%')" ;
+        $Q =  $this->db->query($sql);
+        if ($Q->num_rows() > 0){
+            foreach ($Q->result_array() as $row){
+                $dataset[] = $row;
+            }
+        }
+        $Q->free_result();    
+        return $dataset;    
+	}
+	
+	
+	
 	public function get_ICD_code($code){
 	    $code = stripslashes($code);
         $code = mysql_real_escape_string($code);

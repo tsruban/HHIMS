@@ -1,14 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 05, 2014 at 04:28 AM
--- Server version: 5.5.24-log
--- PHP Version: 5.3.13
+-- Generation Time: Aug 13, 2015 at 08:42 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.16
 
 SET FOREIGN_KEY_CHECKS=0;
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `mdsfqtxu_hhimsv2`
+-- Database: `hhimsv2_1`
 --
 
 -- --------------------------------------------------------
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `admission` (
   KEY `fk_DCHR_ICD` (`Discharge_ICD`),
   KEY `fk_IMMR` (`IMMR`),
   KEY `fk_DCHR_IMMR` (`Discharge_IMMR`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=177 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `admission_diagnosis` (
   `Main` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`ADMDIAGNOSISID`),
   KEY `fk_diagnosis_admission` (`ADMID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=107 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `admission_notes` (
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`ADMNOTEID`),
   KEY `fk_admission_notes` (`ADMID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `admission_prescribe_items` (
   PRIMARY KEY (`prescribe_items_id`),
   KEY `DRGID` (`DRGID`),
   KEY `admission_prescription_id` (`admission_prescription_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `admission_prescribe_items_dispense` (
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`items_dispense_id`),
   KEY `prescribe_items_id` (`prescribe_items_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -210,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `admission_prescription` (
   PRIMARY KEY (`admission_prescription_id`),
   KEY `fk_visit_opd_presciption` (`ADMID`),
   KEY `fk_patient_opd_presciption` (`PID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `admission_procedures` (
   `ProcedureDate` datetime DEFAULT NULL,
   PRIMARY KEY (`ADMDPROCEDUREID`),
   KEY `fk_admission_procedures` (`ADMID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -254,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `admission_transfer` (
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`ADTR`),
   KEY `fk_admission_transfer` (`ADMID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -278,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `Consultant` int(11) DEFAULT NULL,
   PRIMARY KEY (`APPID`),
   KEY `fk_appointment_patient` (`PID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -327,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `attachment_comment` (
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`ATTCH_COM_ID`),
   KEY `fk_attachment_comment` (`ATTCHID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -392,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `clinic_diagram` (
   `LastUpDateUser` varchar(200) DEFAULT NULL,
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`clinic_diagram_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -416,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `clinic_patient` (
   PRIMARY KEY (`clinic_patient_id`),
   KEY `fk_clinic` (`clinic_id`),
   KEY `fk_clinic_patient` (`PID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 -- --------------------------------------------------------
 
@@ -442,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `clinic_prescribe_items` (
   PRIMARY KEY (`clinic_prescribe_item_id`),
   KEY `DRGID` (`DRGID`),
   KEY `fk_clinic_prescribe_items` (`clinic_prescription_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -476,18 +476,14 @@ CREATE TABLE IF NOT EXISTS `clinic_prescription` (
 
 CREATE TABLE IF NOT EXISTS `complaints` (
   `COMPID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(200) DEFAULT NULL,
-  `isNotify` tinyint(1) DEFAULT '0',
-  `Type` varchar(200) DEFAULT NULL,
-  `ICDLink` varchar(200) DEFAULT NULL,
+  `ICPCCode` varchar(8) NOT NULL,
+  `Name` varchar(36) DEFAULT NULL,
+  `ICDCode` varchar(200) DEFAULT NULL,
   `Remarks` varchar(200) DEFAULT NULL,
-  `CreateDate` datetime DEFAULT NULL,
-  `CreateUser` varchar(200) DEFAULT NULL,
-  `LastUpDate` datetime DEFAULT NULL,
-  `LastUpDateUser` varchar(200) DEFAULT NULL,
+  `isNotify` tinyint(1) DEFAULT '0',
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`COMPID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=457 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=727 ;
 
 -- --------------------------------------------------------
 
@@ -610,7 +606,7 @@ CREATE TABLE IF NOT EXISTS `drug_count` (
   PRIMARY KEY (`drug_count_id`),
   KEY `fk_drug_count_stock` (`drug_stock_id`),
   KEY `fk_who_drug_count` (`who_drug_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=318 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=320 ;
 
 -- --------------------------------------------------------
 
@@ -669,7 +665,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `Link_ICD_Code` varchar(20) DEFAULT NULL,
   `Link_ICD_Text` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`EVENTID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10587 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -694,7 +690,7 @@ CREATE TABLE IF NOT EXISTS `finding` (
   `Link_ICD_Code` varchar(20) DEFAULT NULL,
   `Link_ICD_Text` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`FINDID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67684 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -793,6 +789,7 @@ CREATE TABLE IF NOT EXISTS `injection` (
   `LastUpDate` datetime DEFAULT NULL,
   `LastUpDateUser` varchar(200) DEFAULT NULL,
   `Active` tinyint(1) DEFAULT '1',
+  `route` varchar(100) NOT NULL,
   PRIMARY KEY (`injection_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -853,7 +850,7 @@ CREATE TABLE IF NOT EXISTS `lab_order` (
   `CollectBy` varchar(200) DEFAULT NULL,
   `Remarks` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`LAB_ORDER_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
 
 -- --------------------------------------------------------
 
@@ -875,7 +872,7 @@ CREATE TABLE IF NOT EXISTS `lab_order_items` (
   PRIMARY KEY (`LAB_ORDER_ITEM_ID`),
   KEY `LABID` (`LABID`),
   KEY `LAB_ORDER_ID` (`LAB_ORDER_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=154 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -961,7 +958,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `Status` varchar(50) DEFAULT NULL,
   `SentTo` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`NOTIFICATION_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -980,7 +977,7 @@ CREATE TABLE IF NOT EXISTS `opd_notes` (
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`opd_notes_id`),
   KEY `fk_opd_notes` (`OPDID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1027,7 +1024,7 @@ CREATE TABLE IF NOT EXISTS `opd_treatment` (
   `Active` tinyint(1) DEFAULT '1',
   `TREATMENTID` int(11) NOT NULL,
   PRIMARY KEY (`OPDTREATMENTID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 -- --------------------------------------------------------
 
@@ -1063,7 +1060,7 @@ CREATE TABLE IF NOT EXISTS `opd_visits` (
   KEY `fk_opd_doctor` (`Doctor`),
   KEY `fk_referred_admission` (`referred_admission_id`),
   KEY `fk_VisitType` (`VisitType`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=667 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=669 ;
 
 -- --------------------------------------------------------
 
@@ -1116,7 +1113,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   KEY `IX_LPID` (`LPID`),
   KEY `IX_NAME` (`Full_Name_Registered`(5)),
   KEY `HIN` (`HIN`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=189 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1138,7 +1135,7 @@ CREATE TABLE IF NOT EXISTS `patient_alergy` (
   `O_PID` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ALERGYID`),
   KEY `fk_patient_alergy` (`PID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1163,7 +1160,7 @@ CREATE TABLE IF NOT EXISTS `patient_exam` (
   `O_PID` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`PATEXAMID`),
   KEY `fk_patient_exam` (`PID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1187,7 +1184,7 @@ CREATE TABLE IF NOT EXISTS `patient_history` (
   `O_PID` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`PATHISTORYID`),
   KEY `fk_patient_history` (`PID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=83 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1215,7 +1212,7 @@ CREATE TABLE IF NOT EXISTS `patient_injection` (
   KEY `fk_patient_injection` (`PID`),
   KEY `fk_injection` (`injection_id`),
   KEY `fk_order_by` (`order_by_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1234,7 +1231,7 @@ CREATE TABLE IF NOT EXISTS `patient_notes` (
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`patient_notes_id`),
   KEY `fk_patient_notes` (`PID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1255,6 +1252,16 @@ CREATE TABLE IF NOT EXISTS `permission` (
   PRIMARY KEY (`PRMID`),
   UNIQUE KEY `UserGroup` (`UserGroup`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pp_status`
+--
+
+CREATE TABLE IF NOT EXISTS `pp_status` (
+  `Status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1281,7 +1288,7 @@ CREATE TABLE IF NOT EXISTS `prescribe_items` (
   PRIMARY KEY (`PRS_ITEM_ID`),
   KEY `DRGID` (`DRGID`),
   KEY `PRES_ID` (`PRES_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=136 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1363,7 +1370,7 @@ CREATE TABLE IF NOT EXISTS `qb_bill_item` (
   `Type` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`QB_BILL_ITEM_ID`),
   KEY `fk_qb_bill_item` (`QB_BILL_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=494 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1403,7 +1410,7 @@ CREATE TABLE IF NOT EXISTS `qb_consult_fee` (
   `HospitalCommision` float(8,2) DEFAULT '0.00',
   PRIMARY KEY (`QB_CONST_FEE_ID`),
   UNIQUE KEY `Consultant` (`Consultant`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1423,7 +1430,7 @@ CREATE TABLE IF NOT EXISTS `qb_drug_cost` (
   `Name` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`QB_DRUG_COST_ID`),
   UNIQUE KEY `DRUG_ID` (`DRUG_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=129 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1443,7 +1450,7 @@ CREATE TABLE IF NOT EXISTS `qb_lab_cost` (
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`QB_LAB_COST_ID`),
   UNIQUE KEY `LAB_ID` (`LAB_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1463,7 +1470,7 @@ CREATE TABLE IF NOT EXISTS `qb_opd_procedure_cost` (
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`QB_PROC_COST_ID`),
   UNIQUE KEY `PROC_ID` (`PROC_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1490,7 +1497,7 @@ CREATE TABLE IF NOT EXISTS `qb_staff_payment` (
   PRIMARY KEY (`QB_STAFF_PAY_ID`),
   KEY `fk_qb_staff_payment_bill` (`QB_BILL_ID`),
   KEY `fk_qb_staff_payment` (`STAFF_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1641,7 +1648,7 @@ CREATE TABLE IF NOT EXISTS `qu_question` (
   PRIMARY KEY (`qu_question_id`),
   KEY `fk_qu_questionnaire_question` (`qu_questionnaire_id`),
   KEY `fk_qu_questionnaire_question_repos` (`qu_question_repos_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=96926729 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=99544089 ;
 
 -- --------------------------------------------------------
 
@@ -1668,7 +1675,7 @@ CREATE TABLE IF NOT EXISTS `qu_questionnaire` (
   PRIMARY KEY (`qu_questionnaire_id`),
   UNIQUE KEY `code` (`code`),
   KEY `fk_qu_clinic` (`show_in_clinic`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=66042617 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89246048 ;
 
 -- --------------------------------------------------------
 
@@ -1692,7 +1699,7 @@ CREATE TABLE IF NOT EXISTS `qu_question_repos` (
   `qu_group` varchar(20) NOT NULL,
   PRIMARY KEY (`qu_question_repos_id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93502511 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=99408721 ;
 
 -- --------------------------------------------------------
 
@@ -1716,6 +1723,25 @@ CREATE TABLE IF NOT EXISTS `qu_quest_answer` (
 
 -- --------------------------------------------------------
 
+
+--
+-- Table structure for table `qu_diagram`
+--
+
+CREATE TABLE IF NOT EXISTS `qu_diagram` (
+  `qu_diagram_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cln_diagram_id` int(11) DEFAULT NULL,
+  `qu_question_id` int(11) DEFAULT NULL,
+  `CreateDate` datetime DEFAULT NULL,
+  `CreateUser` varchar(200) DEFAULT NULL,
+  `LastUpDate` datetime DEFAULT NULL,
+  `LastUpDateUser` varchar(200) DEFAULT NULL,
+  `Active` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`qu_diagram_id`),
+  KEY `fk_clinic_diagram` (`cln_diagram_id`),
+  KEY `fk_qu_diagram_question_repos` (`qu_question_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=95199765 ;
+
 --
 -- Table structure for table `qu_select`
 --
@@ -1734,7 +1760,7 @@ CREATE TABLE IF NOT EXISTS `qu_select` (
   `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`qu_select_id`),
   KEY `fk_qu_select_question_repos` (`qu_question_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=98400485 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=99405046 ;
 
 -- --------------------------------------------------------
 
@@ -1750,7 +1776,7 @@ CREATE TABLE IF NOT EXISTS `recent_patient` (
   `CreateDate` datetime DEFAULT NULL,
   `O_PID` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`RPID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=557 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1868,7 +1894,7 @@ CREATE TABLE IF NOT EXISTS `user_chat_message` (
   `Message` varchar(500) DEFAULT NULL,
   `Seen` tinyint(4) NOT NULL,
   PRIMARY KEY (`CHAT_MESSAGE_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=121 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1886,7 +1912,7 @@ CREATE TABLE IF NOT EXISTS `user_chat_session` (
   `Status` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`CHAT_CHAT_SESSION_ID`),
   KEY `Session_Id` (`Session_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1927,7 +1953,7 @@ CREATE TABLE IF NOT EXISTS `user_favour_drug_items` (
   PRIMARY KEY (`user_favour_drug_items_id`),
   KEY `fk_favour_drug` (`who_drug_id`),
   KEY `fk_user_favour_drug_items` (`user_favour_drug_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1966,6 +1992,7 @@ CREATE TABLE IF NOT EXISTS `user_menu` (
   `CreateUser` varchar(200) DEFAULT NULL,
   `LastUpDate` datetime DEFAULT NULL,
   `LastUpDateUser` varchar(200) DEFAULT NULL,
+  `PP_Menu` tinyint(1) DEFAULT NULL,
   `Active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`UMID`),
   UNIQUE KEY `Name` (`Name`)
