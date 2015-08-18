@@ -12,14 +12,17 @@ At the top of this file there are four define commands that you will need to cor
 
 These are:
 
-	DATABASE CONNECTION INFORMATIONS
-		$db['default']['hostname'] = 'localhost:3306';
-		$db['default']['dbdriver'] = 'mysql';
-	ENTER THE USER NAME AND PASSWOR DETAILS HERE FOR MYSQL
-		$db['default']['username'] = '';
-		$db['default']['password'] = '';
-		$db['default']['database'] = '';
-
+DATABASE CONNECTION INFORMATIONS
+```php
+$db['default']['hostname'] = 'localhost:3306';
+$db['default']['dbdriver'] = 'mysql';
+```	
+ENTER THE USER NAME AND PASSWOR DETAILS HERE FOR MYSQL
+```php
+$db['default']['username'] = '';
+$db['default']['password'] = '';
+$db['default']['database'] = '';
+```
 6. Open MySQL with the LINUX command: mysql -p
 7. Create a blank database using command: create database hhims;
 8. Give the MySQL command: use hhims;
