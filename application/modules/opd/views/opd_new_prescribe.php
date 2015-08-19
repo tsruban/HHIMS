@@ -403,9 +403,7 @@ function select_formulation(wd_id){
 	current_drug.frequency = null;
 	current_drug.period = null;	
 	load_dose();
-	load_frequency();
-	load_period();
-
+	//load_frequency();
 	enable_button();
 	
 }
@@ -452,6 +450,7 @@ function load_frequency(){
 				}
 			}catch(e){
 			}
+			load_period();
 	});
 	enable_button();
 }
@@ -484,11 +483,12 @@ function load_dose(){
 		}
 	}catch(e){
 	}	
+	load_frequency();
 	});
 	enable_button();
 }
 
-
+/*
 function load_period(){
 	current_drug.period = null;	
 
@@ -517,7 +517,26 @@ function load_period(){
 	enable_button();
 	});
 }
-
+*/
+function load_period(){
+	current_drug.period = null;	
+	var period = new Array('For 1 day','For 2 days','For 3 days','For 4 days','For 5 days','For 1 week','For 2 weeks','For 3 weeks','For 1 month');
+	if (!$("#blk_drug_period").get(0) ){
+		$("#blk_2_content").append('<td id="blk_drug_period" width=1%></td>');
+	}
+	$("#blk_drug_period").html('');
+	$("#blk_drug_period").append('<b>Period</b><div id="selected_period" class="selected">');
+	$("#blk_drug_period").append('<select class="input" id="blk_drug_period_list" onchange=select_period(this.value) size=15 style="height:330px;width:100px;"></select>');
+	$("#blk_drug_period_list").html('');
+	$("#add_cont").html('');
+	try{
+		for (var i=0; i<period.length; i++){
+			$("#blk_drug_period_list").append('<option value="'+period[i]+'" title="'+period[i]+'">'+period[i]+'</option>');
+		}
+	}catch(e){
+	}	
+	enable_button();
+}
 
 function select_fq(fq_id){
 	current_drug.frequency = $("#blk_drug_fq_list option:selected").text();

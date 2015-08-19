@@ -168,7 +168,7 @@ array(
 		"rules"=>"trim|xss_clean",
 		"style"=>"",
 		"class"=>"input"
-	),		
+	),	
 array(		
 		"id"=>"Token_Footer_Text", 
 		"name"=>"Token_Footer_Text",

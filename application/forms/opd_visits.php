@@ -121,7 +121,40 @@ array(
 	)
 );
 // not PP config	
-if ($this->config->item('purpose') != "PP"){	
+
+//if ICD ennabled 
+	if(isset($data['hospital']["Visit_SNOMED_Field"])&&( $data['hospital']["Visit_SNOMED_Field"]==1)){
+		array_push($form["FLD"],array(		
+				"id"=>"SNOMED_Text", 
+				"name"=>"SNOMED_Text",
+				"label"=>"SNOMED",
+				"type"=>"SNOMED_DIAGNOSIS",
+				"value"=>" ",
+				"option"=>"",
+				"placeholder"=>"",
+				"rules"=>"trim|xss_clean",
+				"style"=>"",
+				"class"=>"input",
+				"can_edit"=>array("Programmer","Admin")
+			)
+		);
+		array_push($form["FLD"],array(		
+			"id"=>"SNOMED_Code", 
+			"name"=>"SNOMED_Code",
+			"label"=>"",
+			"type"=>"hidden",
+			"value"=>" ",
+			"option"=>"",
+			"placeholder"=>"",
+			"rules"=>"trim|xss_clean",
+			"style"=>"",
+			"class"=>"input",
+			"can_edit"=>array("Programmer","Admin")
+		)
+	);	
+	}
+
+
 if(isset($data['hospital']["Visit_ICD_Field"])&&( $data['hospital']["Visit_ICD_Field"]==1)){
 	array_push($form["FLD"],array(		
 			"id"=>"ICD_Text", 
@@ -153,38 +186,6 @@ if(isset($data['hospital']["Visit_ICD_Field"])&&( $data['hospital']["Visit_ICD_F
 		)
 	);
 }
-//if ICD ennabled 
-	if(isset($data['hospital']["Visit_SNOMED_Field"])&&( $data['hospital']["Visit_SNOMED_Field"]==1)){
-		array_push($form["FLD"],array(		
-				"id"=>"SNOMED_Text", 
-				"name"=>"SNOMED_Text",
-				"label"=>"SNOMED",
-				"type"=>"SNOMED",
-				"value"=>" ",
-				"option"=>"",
-				"placeholder"=>"",
-				"rules"=>"trim|xss_clean",
-				"style"=>"",
-				"class"=>"input",
-				"can_edit"=>array("Programmer","Admin")
-			)
-		);
-	}
-	array_push($form["FLD"],array(		
-			"id"=>"SNOMED_Code", 
-			"name"=>"SNOMED_Code",
-			"label"=>"",
-			"type"=>"hidden",
-			"value"=>" ",
-			"option"=>"",
-			"placeholder"=>"",
-			"rules"=>"trim|xss_clean",
-			"style"=>"",
-			"class"=>"input",
-			"can_edit"=>array("Programmer","Admin")
-		)
-	);	
-}	//if SNOMED ennabled
 array_push($form["FLD"],array(		
 		"id"=>"Remarks", 
 		"name"=>"Remarks",

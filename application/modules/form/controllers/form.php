@@ -190,9 +190,9 @@ public function edit($frm=NULL,$id=NULL)
 		if (!file_exists('application/forms/'.$frm.'.php')){
 			die("Form ".$frm."  not found");
 		}
-		include 'application/forms/'.$frm.'.php';
+		$data["hospital"] =  $this->mpersistent->open_id(1,'hospital','HID');
+		include 'application/forms/'.$frm.'.php';		
 		$data["form"]=$form;
-		//dprint_r($_POST);
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<span class="field_error">', '</span>');
