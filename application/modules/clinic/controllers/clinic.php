@@ -43,7 +43,10 @@ class Clinic extends MX_Controller {
 	}
 	
 	public function patient(){
-       $qry = "SELECT clinic_patient.PID as PID, clinic_patient.clinic_patient_id,CONCAT(patient.Full_Name_Registered,' ', patient.Personal_Used_Name) as patient_name , clinic.name as clinic_name, 
+       $qry = "SELECT clinic_patient.PID as PID, clinic_patient.clinic_patient_id,
+	   patient.Full_Name_Registered, 
+	   patient.Personal_Used_Name, 
+	   clinic.name as clinic_name, 
 			next_visit_date from clinic_patient 
 			LEFT JOIN `patient` ON patient.PID = clinic_patient.PID 
 			LEFT JOIN `clinic` ON clinic.clinic_id = clinic_patient.clinic_id 
@@ -56,11 +59,12 @@ class Clinic extends MX_Controller {
         $visit_page->setRowid('clinic_patient_id');
         $visit_page->setCaption("Previous visits");
         $visit_page->setShowPager(false);
-        $visit_page->setColNames(array("","ID", "Patient", "Next visit date","Clinic "));
+        $visit_page->setColNames(array("","ID", "Patient","Title", "Next visit date","Clinic "));
         $visit_page->setRowNum(25);
         $visit_page->setColOption("PID", array("search" => false, "hidden" => true));
         $visit_page->setColOption("clinic_patient_id", array("search" => false, "hidden" => true));
-        $visit_page->setColOption("patient_name", array("search" => true, "hidden" => false));
+        $visit_page->setColOption("Full_Name_Registered", array("search" => true, "hidden" => false));
+        $visit_page->setColOption("Personal_Used_Name", array("search" => true, "hidden" => false));
         $visit_page->setColOption("next_visit_date", array("search" => false, "hidden" => false, "width" => 75));
         $visit_page->setColOption("clinic_name", array("search" => false, "hidden" => false, "width" => 75));
         $visit_page->gridComplete_JS

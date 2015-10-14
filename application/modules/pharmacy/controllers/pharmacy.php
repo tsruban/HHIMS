@@ -55,7 +55,8 @@ class Pharmacy extends MX_Controller {
 	  opd_presciption.PID as PID, 
 	  opd_presciption.PRSID,
 	  opd_presciption.Dept,
-	  CONCAT(patient.Full_Name_Registered,' ', patient.Personal_Used_Name) as patient_name , 
+	  patient.Full_Name_Registered, 
+	  patient.Personal_Used_Name,
 	  opd_presciption.CreateDate, 
 	  opd_presciption.Status 
 	  from opd_presciption 
@@ -77,12 +78,13 @@ class Pharmacy extends MX_Controller {
         $visit_page->setShowHeaderRow(true);
         $visit_page->setShowFilterRow(true);
         $visit_page->setShowPager(true);
-        $visit_page->setColNames(array("","ID","Dept", "Patient", "Date","Status"));
+        $visit_page->setColNames(array("","ID","Dept", "Patient","Title", "Date","Status"));
         $visit_page->setRowNum(25);
         $visit_page->setColOption("PID", array("search" => false, "hidden" => true));
         $visit_page->setColOption("PRSID", array("search" => false, "hidden" => false,"width"=>"30px"));
 		$visit_page->setColOption("Dept", array("search" => true, "hidden" => false,"width"=>"50px"));
-        $visit_page->setColOption("patient_name", array("search" => true, "hidden" => false));
+        $visit_page->setColOption("Full_Name_Registered", array("search" => true, "hidden" => false));
+        $visit_page->setColOption("Personal_Used_Name", array("search" => true, "hidden" => false));
         $visit_page->setColOption("CreateDate", array("search" => false, "hidden" => false ));
         $visit_page->setColOption("Status", array("search" => false, "hidden" => false));
         $visit_page->gridComplete_JS
@@ -106,7 +108,8 @@ class Pharmacy extends MX_Controller {
 	  clinic_prescription.PID as PID, 
 	  clinic_prescription.clinic_prescription_id,
 	  clinic_prescription.Dept,
-	  CONCAT(patient.Full_Name_Registered,' ', patient.Personal_Used_Name) as patient_name , 
+	  patient.Full_Name_Registered, 
+	  patient.Personal_Used_Name, 
 	  clinic_prescription.CreateDate, 
 	  clinic_prescription.Status 
 	  from clinic_prescription 
@@ -128,12 +131,13 @@ class Pharmacy extends MX_Controller {
         $visit_page->setShowHeaderRow(true);
         $visit_page->setShowFilterRow(true);
         $visit_page->setShowPager(true);
-        $visit_page->setColNames(array("","ID","Dept", "Patient", "Date","Status"));
+        $visit_page->setColNames(array("","ID","Dept", "Patient","Title", "Date","Status"));
         $visit_page->setRowNum(25);
         $visit_page->setColOption("PID", array("search" => false, "hidden" => true));
         $visit_page->setColOption("clinic_prescription_id", array("search" => false, "hidden" => false,"width"=>"30px"));
 		$visit_page->setColOption("Dept", array("search" => true, "hidden" => false,"width"=>"50px"));
-        $visit_page->setColOption("patient_name", array("search" => true, "hidden" => false));
+        $visit_page->setColOption("Full_Name_Registered", array("search" => true, "hidden" => false));
+        $visit_page->setColOption("Personal_Used_Name", array("search" => true, "hidden" => false));
         $visit_page->setColOption("CreateDate", array("search" => false, "hidden" => false ));
         $visit_page->setColOption("Status", array("search" => false, "hidden" => false));
         $visit_page->gridComplete_JS

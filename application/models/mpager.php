@@ -165,7 +165,7 @@ class Mpager extends CI_Model
             $this->load->model('mpagercolumn');
             $this->mpagercolumn->setIdEL($this->id_EL);
 
-            $uid   = uniqid("_");
+            $uid   = str_replace('.','',uniqid("_",true)); // This was the problem where it dint wokred in Windows server.
             $title = $field->name;
             $table = $field->table;
 

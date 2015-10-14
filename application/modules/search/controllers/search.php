@@ -225,7 +225,8 @@ class Search extends MX_Controller {
 		  lab_order.Dept,
 		  lab_order.OrderDate,
 		  patient.PID as PID, 
-		  CONCAT(patient.Full_Name_Registered,' ', patient.Personal_Used_Name) as patient_name ,
+		 patient.Full_Name_Registered, 
+		 patient.Personal_Used_Name,
 		  lab_order.TestGroupName,
 		  lab_order.Priority,
 		  lab_order.Collection_Status,
@@ -260,13 +261,14 @@ class Search extends MX_Controller {
         $page->setShowHeaderRow(true);
         $page->setShowFilterRow(true);
         $page->setShowPager(true);
-        $page->setColNames(array("","Dept","Date", "ID", "Patient","Test","Priority","Collection Status","Result Status"));
+        $page->setColNames(array("","Dept","Date", "ID", "Patient","Title","Test","Priority","Collection Status","Result Status"));
         $page->setRowNum(25);
         $page->setColOption("Dept", array("search" => false, "hidden" => false,"width"=>"30px"));
         $page->setColOption("LAB_ORDER_ID", array("search" => false, "hidden" => true));
         $page->setColOption("PID", array("search" => true, "hidden" => false,"width"=>"50px"));
 		$page->setColOption("OrderDate", array("search" => true, "hidden" => false,"width"=>"100px" ));
-        $page->setColOption("patient_name", array("search" => true, "hidden" => false));
+        $page->setColOption("Full_Name_Registered", array("search" => true, "hidden" => false));
+        $page->setColOption("Personal_Used_Name", array("search" => true, "hidden" => false));
         
         $page->setColOption("Collection_Status", array("search" => false, "hidden" => false));
         $page->gridComplete_JS
@@ -294,7 +296,8 @@ class Search extends MX_Controller {
 	  opd_treatment.OPDTREATMENTID,
 	  opd_treatment.CreateDate,
 	  patient.PID as PID, 
-	  CONCAT(patient.Full_Name_Registered,' ', patient.Personal_Used_Name) as patient_name ,
+	 patient.Full_Name_Registered, 
+	 patient.Personal_Used_Name,
 	  opd_treatment.Treatment,
 	  opd_treatment.Status
 	  
@@ -315,12 +318,13 @@ class Search extends MX_Controller {
         $page->setShowHeaderRow(true);
         $page->setShowFilterRow(true);
         $page->setShowPager(true);
-        $page->setColNames(array("","Date", "ID", "Patient","Treatment","Status"));
+        $page->setColNames(array("","Date", "ID", "Patient","Title","Treatment","Status"));
         $page->setRowNum(25);
         $page->setColOption("OPDTREATMENTID", array("search" => false, "hidden" => true));
         $page->setColOption("PID", array("search" => true, "hidden" => false));
 		$page->setColOption("CreateDate", array("search" => true, "hidden" => false ));
-        $page->setColOption("patient_name", array("search" => true, "hidden" => false));
+        $page->setColOption("Full_Name_Registered", array("search" => true, "hidden" => false));
+        $page->setColOption("Personal_Used_Name", array("search" => true, "hidden" => false));
         
         $page->setColOption("Status", array("search" => false, "hidden" => false));
         $page->gridComplete_JS
