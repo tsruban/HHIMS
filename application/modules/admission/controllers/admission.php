@@ -282,7 +282,7 @@ public function save_transfer(){
 	return $this->madmission->dispence_data($pitem_id);
 
 	}
-	public function update_status($sts=null,$pitem_id){
+	public function update_status($sts=null,$pitem_id=null){
 		//echo $sts.'--'.$pitem_id;
 		if(!isset($sts) ||(!is_numeric($pitem_id) )){
 			echo 0;

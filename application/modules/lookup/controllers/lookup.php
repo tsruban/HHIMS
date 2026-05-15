@@ -320,7 +320,7 @@ class Lookup extends MX_Controller {
     
     // PP configuration
     // load only the ICD code linked with a given complaint
-     private function loadICDforICPC($fName="icd10",$complaint) {
+     private function loadICDforICPC($fName="icd10",$complaint=null) {
           	
        $path='application/forms/' . $fName . '.php';
         require $path;

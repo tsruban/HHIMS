@@ -39,8 +39,8 @@ class Mlogin extends CI_Model
         $data = array();
 		$username = stripslashes($username);
         $password = stripslashes($password);
-        $username = mysql_real_escape_string($username);
-        $password = md5(mysql_real_escape_string($password));
+        $username = $this->db->escape_str($username);
+        $password = md5($this->db->escape_str($password));
 		$sql=" SELECT *  ";
         $sql .= " FROM user WHERE user.UserName='$username' and user.Password='$password'  " ;
         $sql .= " and user.Active = 1 " ;

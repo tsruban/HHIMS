@@ -69,7 +69,7 @@ class Mpersistent extends CI_Model
 		return $data;
     }
 	
-	function update($table=null,$key_field=null,$id=null,$data){
+	function update($table=null,$key_field=null,$id=null,$data=null){
 				
 		if (!$id) return FALSE;
 		if (!$table) return FALSE;
@@ -90,7 +90,7 @@ class Mpersistent extends CI_Model
 		return $id;
 	}
 	
-	function create($table=null,$data){
+	function create($table=null,$data=null){
 		if (!$table) return FALSE;
 		if (!$data) return FALSE;
 		$data["CreateDate"] = date("Y-m-d H:i:s");
@@ -99,7 +99,7 @@ class Mpersistent extends CI_Model
 		return $this->db->insert_id();
 	}	
 	
-	function insert_batch($table=null,$data){
+	function insert_batch($table=null,$data=null){
 		if (!$table) return FALSE;
 		if (!$data) return FALSE;
 		$this->db->insert_batch($table, $data); 

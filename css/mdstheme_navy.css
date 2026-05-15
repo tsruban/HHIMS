@@ -2,8 +2,7 @@
 	margin:0;
 	padding:0px 0 0 0px;
 	background:  #f9fafc;
--webkit-user-select: none; 
-cursor:default;   
+	cursor:default;
 }
 .h_head{
 background:#ffffff;

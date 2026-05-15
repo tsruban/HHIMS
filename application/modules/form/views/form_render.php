@@ -114,9 +114,11 @@ URL: http://www.govforge.icta.lk/gf/project/hhims/
 										else if ($form["FLD"][$i]["type"] === "table_select"){
 											$d_value = null;
 											if (isset($value)){
-												$d_value = $value[$form["FLD"][$i]["name"]];
+												$d_value = $value[$form["FLD"][$i]["name"]] ?? null;
 											}
-											echo my_form_table_select($form["FLD"][$i], $$form["FLD"][$i]["id"],$d_value,$form_id);			
+											$_opt_var_name = $form["FLD"][$i]["id"] ?? '';
+											$_opt_value = (is_string($_opt_var_name) && isset($$_opt_var_name)) ? $$_opt_var_name : array();
+											echo my_form_table_select($form["FLD"][$i], $_opt_value, $d_value, $form_id);
 										}
 										else if ($form["FLD"][$i]["type"] === "age"){
 											my_form_age($form["FLD"][$i]);
@@ -266,8 +268,9 @@ URL: http://www.govforge.icta.lk/gf/project/hhims/
 											if ($d_value  == ""){
 												$d_value  = $form["FLD"][$i]["value"];
 											}
-											$obj = $$form["FLD"][$i]["id"];
-											echo my_form_object($form["FLD"][$i],$d_value,$form_id,$obj["name"]);
+											$_obj_var_name = $form["FLD"][$i]["id"] ?? '';
+											$obj = (is_string($_obj_var_name) && isset($$_obj_var_name)) ? $$_obj_var_name : array();
+											echo my_form_object($form["FLD"][$i],$d_value,$form_id,$obj["name"] ?? null);
 										}
 										else if($form["FLD"][$i]["type"] === "label"){
 											$d_value = null;
@@ -657,7 +660,7 @@ function my_form_text($frm,$value=NULL,$fid=null){
 }
 
 
-function my_form_object($frm,$value=NULL,$fid=null,$text){
+function my_form_object($frm,$value=NULL,$fid=null,$text=null){
 
 	echo '<input  class="form-control input-sm"';
 		if ($frm["type"]=='hidden'){		
@@ -1297,7 +1300,7 @@ function my_form_table_select($frm,$opt,$val,$fid=null){
 	echo '</select>';
 	echo form_error($frm["name"]);	
 }
-function my_form_boolean($frm,$opt=array("1"=>"Yes","0"=>"No"),$val,$fid=null){
+function my_form_boolean($frm,$opt=array("1"=>"Yes","0"=>"No"),$val=null,$fid=null){
 	echo '<select  class="form-control input-sm" ';
 		echo 'name="'.$frm["name"].'" ';
 		echo 'id="'.$frm["id"].'" ';	
@@ -1326,7 +1329,7 @@ function my_form_id($frm,$val){
 	echo '<input type="hidden" readonly ';
 		echo 'id="'.$frm["OBJID"].'" ';
 		echo 'name="'.$frm["OBJID"].'" ';
-		echo 'value="'.set_value($frm["OBJID"],$val[$frm["OBJID"]]).'" ';
+		echo 'value="'.set_value($frm["OBJID"], $val[$frm["OBJID"]] ?? '').'" ';
 	echo '>';
 }
 

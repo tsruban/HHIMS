@@ -71,7 +71,7 @@ class CI_Loader {
 	 */
 	public function set_base_classes()
 	{
-		$this->_base_classes =& is_loaded();
+		$this->_base_classes = is_loaded();
 		
 		return $this;
 	}

@@ -1,6 +1,101 @@
 <?php
 
 /*
+ * PHP 8 Compatibility: Define deprecated mysql_* functions
+ * These functions were removed in PHP 7.0 but are used throughout this legacy codebase
+ */
+$GLOBALS['__mysql_compat_link'] = null;
+
+if (!function_exists('mysql_real_escape_string')) {
+    function mysql_real_escape_string($string) {
+        if (function_exists('get_instance')) {
+            $ci =& get_instance();
+            if (isset($ci->db)) {
+                return $ci->db->escape_str($string);
+            }
+        }
+        if ($GLOBALS['__mysql_compat_link']) {
+            return mysqli_real_escape_string($GLOBALS['__mysql_compat_link'], $string);
+        }
+        return addslashes($string);
+    }
+}
+
+if (!function_exists('mysql_escape_string')) {
+    function mysql_escape_string($string) {
+        return mysql_real_escape_string($string);
+    }
+}
+
+if (!function_exists('mysql_fetch_field')) {
+    function mysql_fetch_field($result, $field_offset = null) {
+        if ($field_offset !== null) {
+            mysqli_field_seek($result, $field_offset);
+        }
+        return mysqli_fetch_field($result);
+    }
+}
+
+if (!function_exists('mysql_fetch_array')) {
+    function mysql_fetch_array($result, $result_type = MYSQLI_BOTH) {
+        return mysqli_fetch_array($result, $result_type);
+    }
+}
+
+if (!function_exists('mysql_num_fields')) {
+    function mysql_num_fields($result) {
+        return mysqli_num_fields($result);
+    }
+}
+
+if (!function_exists('mysql_num_rows')) {
+    function mysql_num_rows($result) {
+        return mysqli_num_rows($result);
+    }
+}
+
+if (!function_exists('mysql_connect')) {
+    function mysql_connect($server = null, $username = null, $password = null) {
+        $GLOBALS['__mysql_compat_link'] = mysqli_connect($server, $username, $password);
+        return $GLOBALS['__mysql_compat_link'];
+    }
+}
+
+if (!function_exists('mysql_select_db')) {
+    function mysql_select_db($database, $link = null) {
+        $link = $link ?: $GLOBALS['__mysql_compat_link'];
+        return mysqli_select_db($link, $database);
+    }
+}
+
+if (!function_exists('mysql_query')) {
+    function mysql_query($query, $link = null) {
+        $link = $link ?: $GLOBALS['__mysql_compat_link'];
+        return mysqli_query($link, $query);
+    }
+}
+
+if (!function_exists('mysql_error')) {
+    function mysql_error($link = null) {
+        $link = $link ?: $GLOBALS['__mysql_compat_link'];
+        return mysqli_error($link);
+    }
+}
+
+if (!function_exists('mysql_close')) {
+    function mysql_close($link = null) {
+        $link = $link ?: $GLOBALS['__mysql_compat_link'];
+        return mysqli_close($link);
+    }
+}
+
+if (!function_exists('mysql_free_result')) {
+    function mysql_free_result($result) {
+        return mysqli_free_result($result);
+    }
+}
+
+/*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
  *---------------------------------------------------------------
@@ -18,7 +113,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'production');
+	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

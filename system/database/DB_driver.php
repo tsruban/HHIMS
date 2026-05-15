@@ -28,6 +28,7 @@
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/database/
  */
+#[\AllowDynamicProperties]
 class CI_DB_driver {
 
 	var $username;
@@ -78,7 +79,7 @@ class CI_DB_driver {
 	 *
 	 * @param array
 	 */
-	function CI_DB_driver($params)
+	function __construct($params)
 	{
 		if (is_array($params))
 		{

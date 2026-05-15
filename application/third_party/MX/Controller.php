@@ -36,7 +36,8 @@ require dirname(__FILE__).'/Base.php';
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  **/
-class MX_Controller 
+#[\AllowDynamicProperties]
+class MX_Controller
 {
 	public $autoload = array();
 	

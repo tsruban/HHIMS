@@ -1,6 +1,7 @@
 <?php
 
-class MDSLicense 
+#[\AllowDynamicProperties]
+class MDSLicense
 {
 	public $hospital = null;
 	public $key= null;
@@ -51,7 +52,7 @@ class MDSLicense
 		if (file_exists($file)) {
 			$xml = simplexml_load_file($file);
 			$lic = null;
-			$lic =  $xml->getName($file) ;
+			$lic =  $xml->getName() ;
 			if ($lic != "license") { 
 				$this->status = false;
 				$this->hospital = "License not available"; 

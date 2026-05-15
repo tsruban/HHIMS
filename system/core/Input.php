@@ -34,6 +34,8 @@ class CI_Input {
 	var $_standardize_newlines	= TRUE;
 	var $_enable_xss			= FALSE; // Set automatically based on config setting
 	var $_enable_csrf			= FALSE; // Set automatically based on config setting
+	var $security;
+	var $uni;
 
 	protected $headers			= array();
 	

@@ -51,7 +51,7 @@ class Mappointment extends My_Model
     }
 	
 	
-	function get_next_token($VDate=null,$opd_type){
+	function get_next_token($VDate=null,$opd_type=null){
 		$data = array();
 		$sql=" select count(APPID) as total ";
         $sql .= " FROM appointment " ;
